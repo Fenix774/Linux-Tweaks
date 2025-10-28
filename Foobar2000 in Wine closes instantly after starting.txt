@@ -1,0 +1,3 @@
+Foobar2000 aborting shortly after start:
+Install all VCRedist packages with Winetricks (vcrun2003, vcrun2005, vcrun 2008, ...)
+Install Fonts with Winetricks (arial, calibri, consolas, ...)
