@@ -1,0 +1,10 @@
+https://github.com/sddm/sddm/issues/703
+
+
+Add to this file /etc/sysconfig/sddm
+LANG="en_US.UTF-8"
+LC_TIME="en_DE.UTF-8"
+
+
+Path of config file is set by service:
+sudo nano /lib/systemd/system/sddm.service
