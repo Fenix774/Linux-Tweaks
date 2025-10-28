@@ -1,0 +1,3 @@
+Enable German Keyboard Layout for Maliit:
+https://blog.martin-graesslin.com/blog/2021/03/using-maliit-keyboard-in-a-plasma-wayland-session/
+gsettings set org.maliit.keyboard.maliit enabled-languages "['en', 'de', 'emoji']"
