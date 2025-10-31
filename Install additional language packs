@@ -1,0 +1,5 @@
+Look for available language packs:
+sudo dnf list glibc-langpack\* langpacks\*
+
+install with:
+sudo dnf install glibc-langpack-de langpacks-de
