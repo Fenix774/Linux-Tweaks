@@ -8,7 +8,7 @@ sudo dnf install resilio-sync
 
 
 For now you can install it from rpm package with the no digest option:
-rpm -ivh --nodigest --nofiledigest resilio-sync-x86_64.rpm
+sudo rpm -ivh --nodigest --nofiledigest resilio-sync-x86_64.rpm
 
 
 
