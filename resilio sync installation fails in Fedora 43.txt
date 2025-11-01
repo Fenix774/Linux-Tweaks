@@ -14,3 +14,8 @@ sudo rpm -ivh --nodigest --nofiledigest resilio-sync-x86_64.rpm
 
 If an error occurs of missing libcrypt dependencies install this:
 sudo dnf install libxcrypt-compat
+
+
+
+Dont forget to adapt the systmd config file:
+/usr/lib/systemd/user/resilio-sync.service --> change "WantedBy=multi-user.target" to "WantedBy=default.target".
