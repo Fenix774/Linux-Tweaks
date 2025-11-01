@@ -6,5 +6,8 @@ LANG="en_US.UTF-8"
 LC_TIME="en_DE.UTF-8"
 
 
+You can also use this for german days too:
+LC_TIME="de_DE.UTF-8"
+
 Path of config file is set by service:
 sudo nano /lib/systemd/system/sddm.service
