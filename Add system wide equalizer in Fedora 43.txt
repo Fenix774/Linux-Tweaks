@@ -1,0 +1,11 @@
+Run to check type of audio server:
+pactl info | grep "Server Name"
+
+Mine was:
+Server Name: PulseAudio (on PipeWire 1.4.9)
+This means I'm running PulseAudio.
+
+sudo dnf install easyeffects lsp-plugins
+easyeffects
+
+Add appropriate EQ Effect. It runs lsp-plugins in the background. You can import a Equalizer APO config here.
