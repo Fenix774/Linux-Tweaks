@@ -1,0 +1,16 @@
+Apparently Fedora 43 is not currently in the Repo.
+Add as usual with, as maybe it gets added some time:
+
+sudo rpm --import https://linux-packages.resilio.com/resilio-sync/key.asc
+printf "[resilio-sync]\nname=Resilio Sync\nbaseurl=https://linux-packages.resilio.com/resilio-sync/rpm/\$basearch\nenabled=1\ngpgcheck=1\n" | sudo tee /etc/yum.repos.d/resilio-sync.repo
+sudo dnf install resilio-sync
+
+
+
+For now you can install it from rpm package with the no digest option:
+rpm -ivh --nodigest --nofiledigest resilio-sync-x86_64.rpm
+
+
+
+If an error occurs of missing libcrypt dependencies install this:
+sudo dnf install libxcrypt-compat
