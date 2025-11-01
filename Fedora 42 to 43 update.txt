@@ -1,0 +1,13 @@
+
+Update fails due to Wine:
+1. sudo dnf remove winehq-stable\* wine-stable\* wine\*
+2. disable the wineHQ repo (if enabled)
+3. update to the fedora 43
+4. sudo dnf install wine
+
+
+Updatefails due to virtualbox (gpg error):
+1. disable the virtualbox repo
+2. update to fedora 43
+3. enable the virtualbox repo
+4. hope that there will soon be a fedora 43 update for virtualbox
