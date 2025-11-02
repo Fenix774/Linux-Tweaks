@@ -1,0 +1,1 @@
+sudo rpm -ivh --nodigest --nofiledigest <package.rpm>
