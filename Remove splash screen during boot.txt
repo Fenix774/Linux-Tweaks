@@ -1,0 +1,11 @@
+create copy of exisitng grub file for recovery:
+sudo cp /etc/default/grub /etc/default/grub.backup.2025-11-04
+
+edit grub file:
+sudo nano /etc/default/grub
+
+remove rhgb to remove splash screen
+optionally: remove quite to get even more info during boot
+
+rebuild grub file:
+sudo grub2-mkconfig -o /boot/grub2/grub.cfg
