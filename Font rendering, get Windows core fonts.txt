@@ -1,0 +1,6 @@
+sudo dnf install mscore-fonts mscorebc-fonts mscoretabulature-fonts mscoretext-fonts
+
+sudo dnf install mscore-fonts
+sudo dnf install mscorebc-fonts
+sudo dnf install mscoretabulature-fonts
+sudo dnf install mscoretext-fonts
