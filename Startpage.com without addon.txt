@@ -1,0 +1,5 @@
+Firefox search term:
+https://www.startpage.com/sp/search?query=%s&cat=web&pl=opensearch&language=english
+
+In Advanced you can add the suggestions:
+https://www.startpage.com/osuggestions?q=%s
