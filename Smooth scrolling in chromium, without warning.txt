@@ -1,0 +1,26 @@
+Add this flag to the launcher:
+--enable-blink-features=MiddleClickAutoscroll
+
+if there's the %U already it would look like this:
+--enable-blink-features=MiddleClickAutoscroll %U
+
+
+
+To disable the warning about unsupported flags do the follwing:
+1. Use a policy to suppress the warning (best option)
+Chromium respects enterprise policies — including one that disables this banner.
+Create or edit this file (for your user):
+sudo mkdir -p /etc/chromium/policies/managed
+sudo nano /etc/chromium/policies/managed/disable_flags_warning.json
+
+json contains this:
+{
+  "CommandLineFlagSecurityWarningsEnabled": false
+}
+
+Save, then restart Chromium.
+Effect: The “unsupported command-line flag” message disappears.
+Works on:
+Chromium
+Ungoogled Chromium
+Chrome (if the policy directory is /etc/opt/chrome/policies/managed/)
