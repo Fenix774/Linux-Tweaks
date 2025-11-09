@@ -1,0 +1,16 @@
+add in the filter rules in ublock origin (might change):
+
+www.startpage.com##.e1fgh61o0.css-1gjgmnu:style(margin-left: 15% !important;)
+www.startpage.com##.e1fgh61o0.css-1gjgmnu:style(margin-right: 20% !important;)
+www.startpage.com##.e6rco0f0.css-108ilqv:style(margin-left: 15% !important;)
+www.startpage.com##.e6rco0f0.css-108ilqv:style(margin-right: 20% !important;)
+www.startpage.com##.etnutph0.css-1vwcaio:style(margin-left: 15% !important;)
+www.startpage.com##.etnutph0.css-1vwcaio:style(margin-right: 20% !important;)
+www.startpage.com###filters-container:style(margin-left: 15% !important;)
+www.startpage.com###filters-container:style(margin-right: 20% !important;)
+www.startpage.com##.e1w2sbvt0.css-1vwcaio:style(margin-left: 15% !important;)
+www.startpage.com##.e1w2sbvt0.css-1vwcaio:style(margin-right: 20% !important;)
+www.startpage.com##.et0s8w70.css-1vwcaio:style(margin-left: 15% !important;)
+www.startpage.com##.et0s8w70.css-1vwcaio:style(margin-right: 20%x !important;)
+www.startpage.com##.emkm2dh0.css-1vwcaio:style(margin-left: 15% !important;)
+www.startpage.com##.emkm2dh0.css-1vwcaio:style(margin-right: 20% !important;)
