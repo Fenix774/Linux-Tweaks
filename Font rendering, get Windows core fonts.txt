@@ -4,3 +4,5 @@ sudo dnf install mscore-fonts
 sudo dnf install mscorebc-fonts
 sudo dnf install mscoretabulature-fonts
 sudo dnf install mscoretext-fonts
+
+sudo fc-cache -v
