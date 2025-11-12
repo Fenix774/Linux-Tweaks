@@ -1,0 +1,5 @@
+edit ~/.config/trashrc
+
+[Exclude]
+Paths=/mnt/smb/backup/,/mnt/smb/123/,/mnt/smb/share/
+Remote=true
