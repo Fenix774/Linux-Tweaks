@@ -7,3 +7,4 @@ sudo dnf install glibc-langpack-de langpacks-de
 
 sudo dnf group install multimedia
 
+sudo dnf update @core
