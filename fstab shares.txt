@@ -1,0 +1,14 @@
+fstab shares, edit /etc/fstab
+
+entry should look like this:
+//192.168.178.99/data            /mnt/data              cifs    credentials=/etc/samba/credentials/smb.txt,uid=1000,gid=1000,iocharset=utf8,noauto,user        0       0
+
+/mnt/data folder must exist!
+
+
+
+if you get this error:
+This program is not installed setuid root -  "user" CIFS mounts not supported.
+
+run this command:
+sudo chmod u+s /bin/mount /bin/umount /usr/sbin/mount.cifs
