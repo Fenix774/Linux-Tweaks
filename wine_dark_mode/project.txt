@@ -1,1 +1,3 @@
+Set to "no theme" in Wine configuration, then load this registry.
+
 https://gist.github.com/Zeinok/ceaf6ff204792dde0ae31e0199d89398
