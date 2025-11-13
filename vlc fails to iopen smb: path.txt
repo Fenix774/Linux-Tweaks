@@ -1,0 +1,7 @@
+VLC tries to open the SMB URL itself because it advertises support for the protocol in /usr/share/applications/vlc.desktop:
+
+X-KDE-Protocols=ftp,http,https,mms,rtmp,rtsp,sftp,smb
+
+Thus, when you open a file, vlc is executed as vlc smb:... instead of vlc /run/user/1000/kio-fuse-... (where KDE's kio-fuse mounted the smb share).
+
+You can work around this by copying /usr/share/applications/vlc.desktop to ~/.local/share/applications/vlc.desktop and removing smb from the X-KDE-Protocols line. Or you can remove the X-KDE-Protocols line completely if you don't want VLC to open any network protocol itself.
