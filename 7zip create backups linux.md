@@ -7,7 +7,7 @@ Default command:
 ```
 7z a /path/to/archive.7z /path/to/file1.abc /path/to/folder
 ```
-  
+ <br>
 When creating backups of linux directories use the "do not follow symbolic/hardlinks" option:
 ```
 7z a -snh -snl /path/to/archive.7z /path/to/file1.abc /path/to/folder
