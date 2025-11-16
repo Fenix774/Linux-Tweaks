@@ -5,6 +5,6 @@ https://li.nux.ro/download/nux/dextop/el7/x86_64/webcore-fonts-3.0-1.noarch.rpm
 https://li.nux.ro/download/nux/dextop/el7/x86_64/webcore-fonts-vista-3.0-1.noarch.rpm
 
 Download those into a folder. Change to that folder on your terminal. Then do:
-sudo dnf install ./webcore-fonts*
+sudo rpm -ivh --nodigest --nofiledigest msttcore-fonts-installer-2.6-1.noarch.rpm
 
 sudo fc-cache -v
