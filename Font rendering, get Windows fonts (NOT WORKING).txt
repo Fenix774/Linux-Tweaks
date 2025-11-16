@@ -1,0 +1,10 @@
+https://discussion.fedoraproject.org/t/help-installing-microsoft-fonts-like-arial-times-new-roman/78169/8
+
+You can grab them from:
+https://li.nux.ro/download/nux/dextop/el7/x86_64/webcore-fonts-3.0-1.noarch.rpm
+https://li.nux.ro/download/nux/dextop/el7/x86_64/webcore-fonts-vista-3.0-1.noarch.rpm
+
+Download those into a folder. Change to that folder on your terminal. Then do:
+sudo dnf install ./webcore-fonts*
+
+sudo fc-cache -v
