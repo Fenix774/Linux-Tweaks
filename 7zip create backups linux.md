@@ -3,10 +3,12 @@ Install 7zip on Fedora:
 sudo dnf install p7zip p7zip-plugins
 ```
 
+
 Default command:
 ```
 7z a /path/to/archive.7z /path/to/file1.abc /path/to/folder
 ```
+
 
 When creating backups of linux directories use the "do not follow symbolic/hardlinks" option:
 ```
