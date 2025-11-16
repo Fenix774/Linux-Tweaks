@@ -1,0 +1,14 @@
+Edit this file:
+sudo nano /etc/default/grub
+
+Edit the line "GRUB_CMDLINE_LINUX=" to include:
+video=1920x1080
+It may look like this afterwards:
+GRUB_CMDLINE_LINUX="rhgb quiet video=1920x1080 rd.driver.blacklist=nouveau,nova_core modprobe.blacklist=nouveau,nova_core"
+
+Add this line:
+GRUB_GFXMODE=1920x1080x32
+
+
+Reload grub:
+sudo grub2-mkconfig -o /etc/grub2.cfg
