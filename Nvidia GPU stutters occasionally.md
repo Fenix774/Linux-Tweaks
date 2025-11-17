@@ -10,8 +10,7 @@ nvidia-smi -lgc <minGpuClock,maxGpuClock>
 nvidia-smi -lmc <minMemClock,maxMemClock>
 ```
 For example these ranges:
-1005 MHz - 3150 MHz
-810 MHz - 11201 MHz
+1005 MHz - 3150 MHz and 810 MHz - 11201 MHz
 ```
 sudo nvidia-smi -lgc 1500,3150
 sudo nvidia-smi -lmc 5001,11201
