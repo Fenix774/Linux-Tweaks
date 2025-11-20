@@ -16,7 +16,7 @@ If an error occurs of missing libcrypt dependencies install this:
 sudo dnf install libxcrypt-compat
 
 Make it so the package does not get autoremoved:
-sudo dnf mark install libxcrypt-compat
+sudo dnf mark user libxcrypt-compat
 
 
 
