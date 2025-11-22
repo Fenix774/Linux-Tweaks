@@ -1,3 +1,5 @@
+# AppStream Metadata
+
 RPM Fusion repositories also provide AppStream metadata to enable users to install packages using Gnome Software or KDE Discover. Please note that these metadata are a subset of all available packages, as they are only generated for GUI-based packages.<br><br>
 For current Fedora releases, the suggested method is to install the `appstream-data` package using DNF.
 
