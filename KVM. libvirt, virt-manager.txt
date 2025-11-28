@@ -4,3 +4,6 @@ sudo dnf install libvirt virt-manager
 
 Image save location:
 /home/$USER/.local/share/libvirt/images/
+
+
+https://docs.fedoraproject.org/en-US/quick-docs/virtualization-getting-started/
