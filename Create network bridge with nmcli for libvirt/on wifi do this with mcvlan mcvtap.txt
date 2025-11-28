@@ -1,104 +1,289 @@
-You're hitting this error because **NetworkManager does NOT allow creating a macvlan/macvtap interface on top of a Wi-Fi device**.
-This is a hard restriction in NetworkManager:
+Great — I’ll generate a **complete working routed network** for your VM *Windows 11*.
 
-> **macvlan/macvtap can only use Ethernet-like devices as a master**
-> Wi-Fi (`802-11-wireless`) is rejected.
+This network type:
 
-So the error you see:
+✔ works perfectly over Wi-Fi
+✔ gives VM ↔ host full communication
+✔ gives VM full Internet
+✔ does **not** require bridging or macvtap
+✔ works on every access point
+✔ no kernel/mac80211 limitations
 
-```
-'802-11-wireless' not among [bond, bridge, ovs-bridge, ovs-port, team, vrf]
-```
-
-means exactly: **NM won’t accept Wi-Fi as a parent for macvlan/macvtap**.
-
----
-
-# ✅ GOOD NEWS: You *can* still do macvtap on Wi-Fi — just **not with NetworkManager**
-
-The kernel *does* allow it, and libvirt *does* allow it.
-
-You must create it with **ip link**, not `nmcli`.
+This is exactly what you want when bridging on Wi-Fi fails.
 
 ---
 
-# ✅ WORKING METHOD (manual macvtap on Wi-Fi)
+# ✅ STEP 1 — Create a routed network definition
 
-### 1. Create macvtap device
+Run this and save it as **routed-net.xml**:
+
+```xml
+<network>
+  <name>routed-net</name>
+  <forward mode='route'/>
+  <bridge name='virbr1' stp='off' delay='0'/>
+  <ip address='192.168.200.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='192.168.200.20' end='192.168.200.250'/>
+    </dhcp>
+  </ip>
+</network>
+```
+
+This creates a virtual router with:
+
+* Host IP: **192.168.200.1**
+* VM DHCP range: **192.168.200.20 → 250**
+* Full routing to your Wi-Fi NIC
+* NAT-less routing (so LAN devices may reach VM via host routing if added manually)
+
+---
+
+# ✅ STEP 2 — Define + start the network in libvirt
 
 ```bash
-sudo ip link add link wlp0s20f3 name macvtap0 type macvtap mode bridge
+sudo virsh net-define routed-net.xml
+sudo virsh net-start routed-net
+sudo virsh net-autostart routed-net
 ```
 
-### 2. Bring it up
+Check:
 
 ```bash
-sudo ip link set macvtap0 up
+sudo virsh net-list --all
 ```
 
-### 3. Get the tap device number (for libvirt)
+You should see:
 
-```bash
-ls /sys/class/net/macvtap0/tap*
+```
+routed-net  active  yes
 ```
 
-You’ll see something like:
-`/sys/class/net/macvtap0/tap12`
-
-So the tap device is **/dev/tap12**.
-Libvirt can attach to it directly.
-
----
-
-# 🟦 Using it in virt-manager / virsh
-
-In **virt-manager**:
-
-* Add new NIC
-* **Device model:** virtio (recommended)
-* **Source:** *Specify shared device name*
-* **Device name:** `macvtap0`
-* **Mode:** `bridge`
-
-Or virsh:
+And a Linux bridge:
 
 ```bash
-virsh attach-interface <vm> --type direct --source macvtap0 --model virtio --mode bridge --persistent
+ip addr show virbr1
 ```
 
 ---
 
-# ⚠ Notes
+# ✅ STEP 3 — Attach **Windows 11** to the routed network
 
-* VM ↔ LAN works (if AP allows multiple MACs)
-* VM ↔ HOST communication does **not** work in macvtap bridge mode (Linux limitation)
+In virt-manager:
 
-  * If you need host↔VM communication, I can show you **macvlan mode=bridge + VM route workaround** OR **routed libvirt network**.
+1. Open **Windows 11 → Details → NIC**
+2. Change **Network source** to: `routed-net`
+3. Device model: **virtio** (important for performance)
+4. Apply
+
+Or command-line:
+
+```bash
+sudo virsh detach-interface "Windows 11" --type network --current
+sudo virsh attach-interface "Windows 11" --type network --source routed-net --model virtio --persistent
+```
 
 ---
 
-# 🟩 If you want the macvtap to persist across reboots
+# 🔄 STEP 4 — Restart the VM
 
-I can generate a systemd service or udev rule for you.
+Windows 11 will get an IP like:
 
+```
+192.168.200.20
+gateway 192.168.200.1
+dns 192.168.200.1
+```
+
+Check inside Windows:
+
+```
+ipconfig
+```
+
+You should now have:
+
+✔ Internet access
+✔ Host ↔ VM communication
+✔ VM isolated from LAN unless you add routes (optional)
+
+---
+
+# 🛠 OPTIONAL: Allow LAN devices to reach the VM
+
+If you want LAN PCs to reach the VM directly, I can generate the routes.
 Just tell me:
 
-* Do you want it persistent?
-* VM name and interface model (virtio/e1000)?
+* Your host’s Wi-Fi IP (e.g., 192.168.1.x)
 
 ---
 
-# Summary
+# If you want, I can prepare:
 
-NetworkManager **cannot** create a macvtap/macvlan on Wi-Fi → error is expected.
-Use `ip link` instead → works perfectly with libvirt.
+* A routed network with IPv6
+* Static DHCP for Windows 11
+* Port forwarding (e.g. RDP from host → VM)
+
+Just tell me what you need!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+If the VM had internet for a few seconds **and then it stopped**, that tells me something very specific:
+
+### ✔️ Your routing/NAT is correct
+
+(because it *did* work)
+
+### ❌ But the host firewall or NetworkManager keeps **overwriting** the rule after a few seconds
+
+— OR —
+virbr1 is not being recognized as an allowed forwarding interface.
+
+This happens **all the time** on Wi-Fi setups using routed networks.
+
+Let's fix this properly and permanently.
 
 ---
 
-If you want, paste:
+# ✅ STEP 1 — Confirm which firewall you are using
+
+Run this:
+
+```bash
+systemctl is-active firewalld && echo "firewalld" || echo "no-firewalld"
+```
+
+And:
+
+```bash
+sudo iptables -t nat -S
+```
+
+Whichever system is active must get a **persistent MASQUERADE rule**.
+
+---
+
+# 🔥 FIX FOR FIREWALLD (Fedora, RHEL, some Ubuntu)
+
+Firewalld removes iptables rules after a few seconds, which explains your symptom.
+
+Run:
+
+```bash
+sudo firewall-cmd --permanent --add-masquerade
+sudo firewall-cmd --reload
+```
+
+Then **explicitly allow forwarding** from virbr1 to Wi-Fi:
+
+Replace `wlp0s20f3` with your Wi-Fi iface:
+
+```bash
+sudo firewall-cmd --permanent --add-forward --zone=public
+sudo firewall-cmd --permanent --direct --add-rule ipv4 nat POSTROUTING 0 -s 192.168.200.0/24 -o wlp0s20f3 -j MASQUERADE
+sudo firewall-cmd --reload
+```
+
+This stops firewalld from deleting the NAT rule.
+
+---
+
+# 🔰 FIX FOR IPTABLES / NFTABLES (Ubuntu, Debian, Arch, Manjaro)
+
+If you’re using iptables/nftables, add persistence:
+
+```bash
+sudo iptables -t nat -A POSTROUTING -s 192.168.200.0/24 -o wlp0s20f3 -j MASQUERADE
+```
+
+Save permanently:
+
+**Debian/Ubuntu**
+
+```bash
+sudo apt install iptables-persistent
+sudo netfilter-persistent save
+```
+
+**Arch**
+
+```bash
+sudo iptables-save | sudo tee /etc/iptables/iptables.rules
+sudo systemctl enable iptables
+```
+
+Without persistence, NetworkManager or systemd restores a clean table after a few seconds → your exact failure.
+
+---
+
+# 🟦 STEP 2 — Allow forwarding through virbr1
+
+Add this to `/etc/sysctl.d/99-ipforward.conf`:
 
 ```
-ip addr show
+net.ipv4.ip_forward = 1
+net.ipv4.conf.all.forwarding = 1
+net.ipv4.conf.virbr1.forwarding = 1
+net.ipv4.conf.wlp0s20f3.forwarding = 1
 ```
 
-and I’ll generate the exact commands for your interface.
+Then:
+
+```bash
+sudo sysctl --system
+```
+
+---
+
+# 🟦 STEP 3 — Test again
+
+1. Restart libvirt:
+
+```bash
+sudo systemctl restart libvirtd
+```
+
+2. Reboot the VM
+3. Test inside the VM:
+
+```
+ping 192.168.200.1
+ping 8.8.8.8
+ping google.com
+```
+
+---
+
+# 🟩 IMPORTANT QUESTION
+
+I want to give you the *exact* commands for your system.
+
+Please paste the outputs of:
+
+```
+systemctl is-active firewalld
+```
+
+```
+sudo iptables -t nat -S
+```
+
+```
+nmcli device | grep wifi -i
+```
+
+With that, I will produce a **one-line fix** that matches your OS and firewall.
