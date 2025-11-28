@@ -1,0 +1,104 @@
+You're hitting this error because **NetworkManager does NOT allow creating a macvlan/macvtap interface on top of a Wi-Fi device**.
+This is a hard restriction in NetworkManager:
+
+> **macvlan/macvtap can only use Ethernet-like devices as a master**
+> Wi-Fi (`802-11-wireless`) is rejected.
+
+So the error you see:
+
+```
+'802-11-wireless' not among [bond, bridge, ovs-bridge, ovs-port, team, vrf]
+```
+
+means exactly: **NM won’t accept Wi-Fi as a parent for macvlan/macvtap**.
+
+---
+
+# ✅ GOOD NEWS: You *can* still do macvtap on Wi-Fi — just **not with NetworkManager**
+
+The kernel *does* allow it, and libvirt *does* allow it.
+
+You must create it with **ip link**, not `nmcli`.
+
+---
+
+# ✅ WORKING METHOD (manual macvtap on Wi-Fi)
+
+### 1. Create macvtap device
+
+```bash
+sudo ip link add link wlp0s20f3 name macvtap0 type macvtap mode bridge
+```
+
+### 2. Bring it up
+
+```bash
+sudo ip link set macvtap0 up
+```
+
+### 3. Get the tap device number (for libvirt)
+
+```bash
+ls /sys/class/net/macvtap0/tap*
+```
+
+You’ll see something like:
+`/sys/class/net/macvtap0/tap12`
+
+So the tap device is **/dev/tap12**.
+Libvirt can attach to it directly.
+
+---
+
+# 🟦 Using it in virt-manager / virsh
+
+In **virt-manager**:
+
+* Add new NIC
+* **Device model:** virtio (recommended)
+* **Source:** *Specify shared device name*
+* **Device name:** `macvtap0`
+* **Mode:** `bridge`
+
+Or virsh:
+
+```bash
+virsh attach-interface <vm> --type direct --source macvtap0 --model virtio --mode bridge --persistent
+```
+
+---
+
+# ⚠ Notes
+
+* VM ↔ LAN works (if AP allows multiple MACs)
+* VM ↔ HOST communication does **not** work in macvtap bridge mode (Linux limitation)
+
+  * If you need host↔VM communication, I can show you **macvlan mode=bridge + VM route workaround** OR **routed libvirt network**.
+
+---
+
+# 🟩 If you want the macvtap to persist across reboots
+
+I can generate a systemd service or udev rule for you.
+
+Just tell me:
+
+* Do you want it persistent?
+* VM name and interface model (virtio/e1000)?
+
+---
+
+# Summary
+
+NetworkManager **cannot** create a macvtap/macvlan on Wi-Fi → error is expected.
+Use `ip link` instead → works perfectly with libvirt.
+
+---
+
+If you want, paste:
+
+```
+ip addr show
+```
+
+and I’ll generate the exact commands for your interface.
