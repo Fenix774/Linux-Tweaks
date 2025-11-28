@@ -6,4 +6,8 @@ Image save location:
 /home/$USER/.local/share/libvirt/images/
 
 
+sudo usermod -a -G libvirt username
+sudo usermod -a -G kvm username
+
+
 https://docs.fedoraproject.org/en-US/quick-docs/virtualization-getting-started/
