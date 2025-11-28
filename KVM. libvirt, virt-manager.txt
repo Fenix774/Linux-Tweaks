@@ -1,13 +1,10 @@
-Install components:
-sudo dnf install libvirt virt-manager
-
-
-Image save location:
-/home/$USER/.local/share/libvirt/images/
-
+sudo dnf install @virtualization
 
 sudo usermod -a -G libvirt username
 sudo usermod -a -G kvm username
 
+
+Image save location:
+/home/$USER/.local/share/libvirt/images/
 
 https://docs.fedoraproject.org/en-US/quick-docs/virtualization-getting-started/
