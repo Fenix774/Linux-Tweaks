@@ -1,3 +1,8 @@
 Foobar2000 aborting shortly after start:
 Install all VCRedist packages with Winetricks (vcrun2003, vcrun2005, vcrun 2008, ...)
 Install Fonts with Winetricks (arial, calibri, consolas, ...)
+
+
+
+As network path use smb share address:
+smb://192.168.2.10/music/
