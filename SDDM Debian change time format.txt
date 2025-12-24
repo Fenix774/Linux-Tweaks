@@ -1,0 +1,3 @@
+Add to this file /etc/locale.conf or /etc/default/locale (depends on distro):
+
+LC_TIME=de_DE.UTF-8
