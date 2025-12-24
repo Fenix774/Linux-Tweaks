@@ -1,0 +1,14 @@
+
+GRUB_DEFAULT=0
+GRUB_TIMEOUT=5
+GRUB_DISTRIBUTOR=`( . /etc/os-release && echo ${NAME} )`
+#GRUB_CMDLINE_LINUX_DEFAULT="quiet"
+#GRUB_CMDLINE_LINUX_DEFAULT="quiet splash fbcon=font:TER16x32"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet loglevel=0 fbcon=font:TER16x32"
+GRUB_CMDLINE_LINUX=""
+
+#Theme file must be unreadable for this to work: sudo chmod -x /etc/grub.d/05_debian_theme
+GRUB_COLOR_NORMAL="white/black"
+GRUB_COLOR_HIGHLIGHT="black/light-gray"
+
+GRUB_GFXMODE=1366x854x32
