@@ -1,0 +1,6 @@
+sudo apt install plasma-discover appstream
+
+sudo appstreamcli refresh-cache --force
+
+plasma-discover --quit
+plasma-discover &
