@@ -1,4 +1,4 @@
-Make a *.sh file with these contents. Don't forget to make the file executable with "chmod +x <<name>>.sh":
+Make a *.sh file with these contents. Don't forget to make the file executable with "chmod +x *.sh":
 
 ```
 #!/bin/bash
