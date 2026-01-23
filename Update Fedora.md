@@ -1,5 +1,6 @@
 Make a *.sh files with these contents. Don't foregt to make the file executable with "chmod +x <name>.sh":
 
+```
 #!/bin/bash
 
 konsole -e "bash -c 'set +x;
@@ -28,3 +29,4 @@ sudo snap refresh;
 sleep 3;
 
 exit; exec bash'"
+```
