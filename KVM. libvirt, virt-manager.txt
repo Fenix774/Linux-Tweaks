@@ -16,3 +16,7 @@ Image save location:
 /var/lib/libvirt/images
 
 https://docs.fedoraproject.org/en-US/quick-docs/virtualization-getting-started/
+
+
+WHEN MIGRATING WINDOWS 11 VM:
+If it won't boot from the disk for whatever reason, go into the qemu BIOS and reset the secure boot keys. For some reason that worked.
