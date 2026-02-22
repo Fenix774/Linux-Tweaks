@@ -1,8 +1,15 @@
 Add this flag to the launcher:
 --enable-blink-features=MiddleClickAutoscroll
 
+You can also add this if you want to stop the browser asking to be set to default browser:
+--no-default-browser-check
+
+
 if there's the %U already it would look like this:
 --enable-blink-features=MiddleClickAutoscroll %U
+
+Or this if you disable the browser check too:
+--no-default-browser-check --enable-blink-features=MiddleClickAutoscroll %U
 
 
 
@@ -24,3 +31,4 @@ Works on:
 Chromium
 Ungoogled Chromium
 Chrome (if the policy directory is /etc/opt/chrome/policies/managed/)
+
