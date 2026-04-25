@@ -23,3 +23,6 @@ Reload grub:
 ```
 sudo grub2-mkconfig -o /etc/grub2.cfg
 ```
+
+
+If the sleep redout does not change, make sure the sleep setting in BIOS is set to Linux!
