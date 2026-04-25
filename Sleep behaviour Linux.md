@@ -1,4 +1,4 @@
-Usually on Linux Laptzops use "s2idle" sleep mode. This can drain up to 10% battery in sleep each day.
+Usually on Linux Laptops use "s2idle" sleep mode. This can drain up to 10% battery in sleep each day.
 
 Check sleep setting:
 cat /sys/power/mem_sleep
