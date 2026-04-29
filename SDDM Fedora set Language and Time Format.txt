@@ -11,3 +11,12 @@ LC_TIME="de_DE.UTF-8"
 
 Path of config file is set by service:
 sudo nano /lib/systemd/system/sddm.service
+
+
+
+
+----------------------------------------
+
+KDE Plasma Login Manager:
+sudo nano /etc/locale.conf
+change "LANG=en_US.UTF-8" to "LANG=de_DE.UTF-8"
