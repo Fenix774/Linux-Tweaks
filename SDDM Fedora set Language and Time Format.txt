@@ -1,6 +1,6 @@
 https://github.com/sddm/sddm/issues/703
 
-
+SDDM:
 Add to this file /etc/sysconfig/sddm
 LANG="en_US.UTF-8"
 LC_TIME="en_DE.UTF-8"
@@ -18,9 +18,6 @@ sudo nano /lib/systemd/system/sddm.service
 ----------------------------------------
 
 KDE Plasma Login Manager:
-sudo nano /etc/locale.conf
-change "LANG=en_US.UTF-8" to "LANG=de_DE.UTF-8"
-
 Add to this file /etc/sysconfig/plasmalogin
 LANG="en_US.UTF-8"
 LC_TIME="en_DE.UTF-8"
