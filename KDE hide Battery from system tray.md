@@ -5,7 +5,7 @@ Get more info:
 upower -i /org/freedesktop/UPower/devices/battery_hid_abcdefghijkx12345_battery
 
 Output may look something like this:
-  native-path:          hid_abcdefghijkx12345_battery
+  native-path:          <native_path_name>
   model:                <model_name_of_hid_device>
   power supply:         no
   updated:              Do 01 Jan 1970 01:00:00 CET (1223456008 seconds ago)
@@ -17,11 +17,17 @@ Output may look something like this:
     icon-name:          'battery-missing-symbolic'
 
 
-Create udev rule:
-sudo nano /etc/udev/rules.d/99-ignore-battery-hid.rules
+Create first udev rule:
+sudo nano /etc/udev/rules.d/98-ignore-battery-hid.rules
 
 Paste this (replace with correct model name):
 SUBSYSTEM=="power_supply", ATTR{model_name}=="<model_name_of_hid_device>", OPTIONS+="ignore_device"
+
+Create second udev rule:
+sudo nano /etc/udev/rules.d/99-ignore-battery-hid.rules
+
+Paste this (replace with correct model name):
+SUBSYSTEM=="power_supply", KERNEL=="<native_path_name>", OPTIONS+="ignore_device"
 
 Reload udev rules:
 sudo udevadm control --reload
