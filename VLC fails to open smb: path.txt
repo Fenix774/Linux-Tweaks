@@ -1,3 +1,14 @@
+NEW FIX:
+
+Fedora fails to install the vlc smb plugin:
+sudo dnf install vlc-plugin-samba
+
+After this it should work.
+
+
+
+
+
 VLC tries to open the SMB URL itself because it advertises support for the protocol in /usr/share/applications/vlc.desktop:
 
 X-KDE-Protocols=ftp,http,https,mms,rtmp,rtsp,sftp,smb
