@@ -1,5 +1,12 @@
+```
 https://github.com/dlundqvist/xone/releases/tag/v0.4.11
 https://github.com/dlundqvist/xone
+```
+
+Prerequisites:
+```
+sudo dnf install make kernel-devel dkms bsdtar
+```
 
 Guide
 
