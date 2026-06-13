@@ -42,7 +42,7 @@ $ sudo tee /usr/lib/dracut/modules.d/99thunderbolt-auth/module-setup.sh <<'EOF'
 check() { return 0; }
 depends() { return 0; }
 install() {
-    inst_simple "$moddir/99-thunderbolt-auto-auth.rules" 
+    inst_simple "$moddir/99-thunderbolt-auto-auth.rules"
         /etc/udev/rules.d/99-thunderbolt-auto-auth.rules
 }
 EOF
