@@ -69,5 +69,4 @@ Comment: Hey, 2 things:
 right after >>inst_simple “$moddir/99-thunderbolt-auto-auth.rules”<< should not be a linebreak
 It’s not working on my Thinkpad T14 Gen 3 Intel with the TB3 Gen2 Dock
 Cheers, Tobi
-
 ```
