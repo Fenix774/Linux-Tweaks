@@ -60,12 +60,3 @@ $ sudo dracut --force
 Security Notes
 
 The udev rule auto-authorizes Thunderbolt devices only during the brief Dracut window. In the running system, boltd continues to handle authorization normally. In both cases, IOMMU DMA protection remains active, which is the actual security boundary against malicious Thunderbolt devices.
-
-There was this comment submitted for this solution:
-
-```
-Comment: Hey, 2 things:
-right after >>inst_simple “$moddir/99-thunderbolt-auto-auth.rules”<< should not be a linebreak
-It’s not working on my Thinkpad T14 Gen 3 Intel with the TB3 Gen2 Dock
-Cheers, Tobi
-```
