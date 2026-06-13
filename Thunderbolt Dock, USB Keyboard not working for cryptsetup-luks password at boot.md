@@ -49,9 +49,9 @@ EOF
 $ sudo chmod +x /usr/lib/dracut/modules.d/99thunderbolt-auth/module-setup.sh
 ```
 Create the dracut config at /etc/dracut.conf.d/thunderbolt.conf:
-
+```
 add_dracutmodules+=" thunderbolt-auth "
-
+```
 Note that dracut module names in config files omit the numeric prefix – the directory is 99thunderbolt-auth but is referenced as thunderbolt-auth.
 
 Rebuild the initramfs:
