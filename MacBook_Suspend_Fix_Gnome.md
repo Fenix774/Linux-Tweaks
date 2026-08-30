@@ -83,7 +83,7 @@ Drop-in files in `/etc/systemd/logind.conf.d/` keep the main configuration clean
   Writes the contents of RAM to swap and powers the system completely off.
 * **`poweroff`**: 
   Executes an immediate clean shutdown.
-  
+
 ---
 
 ## 3. Apply Changes & Restart
