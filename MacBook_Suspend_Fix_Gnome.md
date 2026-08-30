@@ -1,6 +1,6 @@
 # MacBook 12" Retina (2017) Fedora Gnome Setup: Sleep & Lid Management
 
-A concise setup and workaround guide for the broken ACPI suspend and SPI input controller wake issues on the 12-inch Retina MacBook (`MacBook10,1`) running Fedora Gnome.
+A setup and workaround guide for the broken ACPI suspend and SPI input controller wake issues on the 12-inch Retina MacBook (`MacBook10,1`) running Fedora Gnome.
 
 ---
 
