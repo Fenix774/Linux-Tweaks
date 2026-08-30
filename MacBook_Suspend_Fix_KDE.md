@@ -53,7 +53,7 @@ sudo systemctl mask sleep.target suspend.target
 
 ## 3. Apply Changes & Restart
 
-To ensure all GNOME desktop UI elements update and reload masked D-Bus interfaces, reboot your system:
+To ensure all KDE desktop UI elements update and reload masked D-Bus interfaces, reboot your system:
 
 ```bash
 sudo reboot
