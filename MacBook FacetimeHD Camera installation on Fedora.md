@@ -10,7 +10,7 @@ A step-by-step guide to extract required firmware and install the FaceTime HD (B
 2. [Firmware Extraction and Installation](#2-firmware-extraction-and-installation)
 3. [Dracut Configuration (Initramfs Inclusion)](#3-dracut-configuration-initramfs-inclusion)
 4. [Driver Installation via Copr](#4-driver-installation-via-copr)
-5. [Verification & Troubleshooting (Optional)](#5-verification--troubleshooting)
+5. [Verification & Troubleshooting (Optional)](#5-verification--troubleshooting-optional)
 6. [References & Sources](#6-references--sources)
 
 ---
