@@ -51,7 +51,17 @@ sudo systemctl mask sleep.target suspend.target
 
 ---
 
-## 3. Maximize Idle Battery Life (Optional)
+## 3. Apply Changes & Restart
+
+To ensure all GNOME desktop UI elements update and reload masked D-Bus interfaces, reboot your system:
+
+```bash
+sudo reboot
+```
+
+---
+
+## 4. Maximize Idle Battery Life (Optional)
 
 Because the Intel Y-series CPU is fanless and sips ~0.8W at idle, these optimizations keep battery drain minimal while the screen is off.
 
