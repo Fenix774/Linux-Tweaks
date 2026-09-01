@@ -27,7 +27,7 @@ On the 12-inch MacBook's internal eDP Retina panel, the Intel DRM hardware plane
 
 Disable direct scanout in KWin by setting the `KWIN_DRM_NO_DIRECT_SCANOUT` environment variable globally.
 
-### Step 1: Open `/etc/environment` for Editing
+### Step 1: Edit `/etc/environment` to contain `KWIN_DRM_NO_DIRECT_SCANOUT=1`
 
 Run the following command in your terminal:
 
