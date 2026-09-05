@@ -1,0 +1,32 @@
+sudo dnf install git cmake gcc-c++ extra-cmake-modules qt6-qtbase-devel kwin-devel kf6-ki18n-devel kf6-kguiaddons-devel kf6-kcmutils-devel kf6-kconfigwidgets-devel wayland-devel yaml-cpp-devel libevdev-devel libepoxy-devel cli11-devel libdrm-devel
+
+curl -o inputactions-installer.sh https://raw.githubusercontent.com/taj-ny/InputActions/refs/heads/main/install.sh
+
+chmod +x inputactions-installer.sh
+
+./inputactions-installer.sh --ctl --kwin --latest
+
+nano ~/.config/inputactions/config.yaml
+
+touchpad:
+  gestures:
+    - type: swipe
+      fingers: 2
+      direction: right
+      actions:
+        - on: begin
+          input:
+            - mouse: [ back ]
+    - type: swipe
+      fingers: 2
+      direction: left
+      actions:
+        - on: begin
+          input:
+            - mouse: [ forward ]
+
+
+Enable the KWin Plugin:
+    Open System Settings → Desktop Effects.
+    Search for InputActions and check the box to enable it.
+    Click Apply.
