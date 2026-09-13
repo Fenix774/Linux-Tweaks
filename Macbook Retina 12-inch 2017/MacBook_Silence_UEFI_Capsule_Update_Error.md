@@ -27,10 +27,6 @@ DisableCapsuleUpdate=true
 
 > **Note:** If `/etc/fwupd/uefi_capsule.conf` is missing or commented out, you can set the key directly or create the file with the section header and key shown above.
 
-Save the file and exit:
-- In `nano`, press `Ctrl + O`, then `Enter` to write the changes.
-- Press `Ctrl + X` to exit.
-
 ---
 
 ## 2. Restart the `fwupd` Daemon
