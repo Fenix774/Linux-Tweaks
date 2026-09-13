@@ -12,20 +12,18 @@ Because Apple delivers firmware updates exclusively through macOS installers rat
 
 ## 1. Disable the UEFI Capsule Plugin in `fwupd`
 
-Open a terminal and edit the UEFI capsule configuration file using root privileges:
+Open a terminal and edit the fwupdmgr configuration file using root privileges:
 
 ```bash
-sudo nano /etc/fwupd/uefi_capsule.conf
+sudo nano /etc/fwupd/fwupd.conf
 ```
 
-Locate the `[uefi_capsule]` section and change `DisableCapsuleUpdate` to `true`:
+Locate the `[fwupd]` section and change `DisabledPlugins` to `test;test_ble;uefi_capsule;uefi_capsule_splash`:
 
 ```ini
-[uefi_capsule]
-DisableCapsuleUpdate=true
+[fwupd]
+DisabledPlugins=test;test_ble;uefi_capsule;uefi_capsule_splash
 ```
-
-> **Note:** If `/etc/fwupd/uefi_capsule.conf` is missing or commented out, you can set the key directly or create the file with the section header and key shown above.
 
 ---
 
