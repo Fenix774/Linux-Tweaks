@@ -10,7 +10,7 @@ Because Apple delivers firmware updates exclusively through macOS installers rat
 
 ---
 
-## 1. Disable the UEFI Capsule Plugin in `fwupd`
+## 1. Disable the UEFI Capsule Plugin
 
 Open a terminal and edit the fwupdmgr configuration file using root privileges:
 
