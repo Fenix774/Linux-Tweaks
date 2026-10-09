@@ -6,3 +6,6 @@ wintricks --gui -q
 
 winetricks -q vcrun6 vcrun2003 vcrun2005 vcrun2008 vcrun2010 vcrun2012 vcrun2013 vcrun2022
 winetricks -q allfonts
+winetricks -q dxvk d3dcompiler_43 d3dcompiler_47 d3dx9
+winetricks -q msxml3 msxml6
+winetricks -q xact
