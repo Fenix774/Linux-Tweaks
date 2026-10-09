@@ -1,0 +1,1 @@
+echo -e "[General]\nGreeterEnvironment=QT_SCALE_FACTOR=2" | sudo tee /etc/sddm.conf.d/wayland-scale.conf
