@@ -1,0 +1,8 @@
+sudo dnf install wine winetricks
+
+launcher shortcut:
+wintricks --gui -q
+
+
+winetricks -q vcrun6 vcrun2003 vcrun2005 vcrun2008 vcrun2010 vcrun2012 vcrun2013 vcrun2022
+winetricks -q allfonts
