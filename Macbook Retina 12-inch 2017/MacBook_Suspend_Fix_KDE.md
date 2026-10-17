@@ -14,16 +14,7 @@ This completely blocks all sleep variations, including hybrid states and timed s
 
 ```bash
 # Mask all sleep, suspend, and hybrid targets
-sudo systemctl mask sleep.target suspend.target hybrid-sleep.target suspend-then-hibernate.target
-```
-
-### Alternative: Minimal Suspend Masking (Less Intrusive)
-
-If you only want to block direct suspend-to-RAM while leaving compound sleep hooks untouched:
-
-```bash
-# Minimal target masking (may still allow hybrid sleep triggers)
-sudo systemctl mask sleep.target suspend.target
+sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
 ```
 
 > **Target Breakdown:**
